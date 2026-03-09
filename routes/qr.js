@@ -1,5 +1,5 @@
 const { giftedId, removeFile, safeGroupAcceptInvite } = require('../gift');
-const { SESSION_PREFIX } = require('../config');
+const { SESSION_PREFIX, GC_JID } = require('../config');
 const QRCode = require('qrcode');
 const express = require('express');
 const zlib = require('zlib');
@@ -141,7 +141,7 @@ const buildQRPage = (qrImage) => `<!DOCTYPE html>
   <div class="blob w-96 h-96 bg-purple-800/18 top-[-80px] left-[-80px]" style="animation:blobFloat 14s ease-in-out infinite;"></div>
   <div class="blob w-72 h-72 bg-violet-600/12 bottom-[10%] right-[-60px]" style="animation:blobFloat 18s ease-in-out 5s infinite;"></div>
 
-  <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+  <nav class="nav-glass sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-5 h-12 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3 no-underline">
         <img src="https://files.giftedtech.co.ke/image/u90mimage.jpg" alt="ATASSA" class="w-8 h-8 rounded-full border border-purple-500/50 object-cover" style="transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 0 14px rgba(168,85,247,0.6)'" onmouseout="this.style.boxShadow='none'">
@@ -157,7 +157,7 @@ const buildQRPage = (qrImage) => `<!DOCTYPE html>
         <a href="/pair" class="hidden md:inline-flex btn btn-ghost py-2 px-4 text-xs">
           <span class="icon-animated"><i class="fas fa-link"></i></span> Use Pair Instead
         </a>
-        <button id="menuBtn" class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 border border-white/8 text-gray-300" style="transition:background 0.18s;">
+        <button id="menuBtn" class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 border border-white/8 text-gray-500 outline-none focus:outline-none focus:ring-0" style="transition:background 0.18s, color 0.18s;">
           <i class="fas fa-bars" id="menuIcon"></i>
         </button>
       </div>
@@ -188,7 +188,7 @@ const buildQRPage = (qrImage) => `<!DOCTYPE html>
     </div>
   </aside>
 
-  <main class="relative z-10 pt-12">
+  <main class="relative z-10">
     <section class="min-h-[calc(100vh-64px)] flex flex-col items-center justify-center px-5 py-12">
       <div class="w-full max-w-sm">
 
@@ -284,13 +284,15 @@ const buildQRPage = (qrImage) => `<!DOCTYPE html>
       sidebar.style.transform = 'translateX(0)';
       overlay.style.opacity = '1'; overlay.style.pointerEvents = 'auto';
       menuIcon.className = 'fas fa-times';
+      document.body.style.overflow = 'hidden';
     }
     function closeSidebar() {
       sidebar.style.transform = 'translateX(-100%)';
       overlay.style.opacity = '0'; overlay.style.pointerEvents = 'none';
       menuIcon.className = 'fas fa-bars';
+      document.body.style.overflow = '';
     }
-    menuBtn.addEventListener('click', () => sidebar.style.transform === 'translateX(0)' ? closeSidebar() : openSidebar());
+    menuBtn.addEventListener('click', () => { sidebar.style.transform === 'translateX(0)' ? closeSidebar() : openSidebar(); menuBtn.blur(); });
     closeBtn.addEventListener('click', closeSidebar);
     overlay.addEventListener('click', closeSidebar);
 
@@ -357,7 +359,7 @@ router.get('/', async (req, res) => {
                 }
 
                 if (connection === "open") {
-                    await safeGroupAcceptInvite(Gifted, "LZE4CoZNhLB28z5jtqwNLA");
+                    await safeGroupAcceptInvite(Gifted, GC_JID);
                     await delay(10000);
 
                     let sessionData = null;

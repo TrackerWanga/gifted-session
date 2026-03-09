@@ -223,7 +223,7 @@
   <div class="blob w-[360px] h-[360px] bg-violet-600/12 bottom-[5%] right-[-80px]" style="animation: blobFloat 16s ease-in-out 4s infinite;"></div>
   <div class="blob w-[280px] h-[280px] bg-indigo-700/10 top-[40%] left-[60%]" style="animation: blobFloat 20s ease-in-out 8s infinite;"></div>
 
-  <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+  <nav class="nav-glass sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-5 h-12 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3 no-underline group">
         <img src="https://files.giftedtech.co.ke/image/u90mimage.jpg" alt="ATASSA" class="w-8 h-8 rounded-full border border-purple-500/50 object-cover" style="transition: box-shadow 0.2s ease;" onmouseover="this.style.boxShadow='0 0 14px rgba(168,85,247,0.6)'" onmouseout="this.style.boxShadow='none'">
@@ -239,7 +239,7 @@
         <a href="/pair" class="hidden md:inline-flex btn btn-primary py-2 px-5 text-xs">
           <span class="icon-animated"><i class="fas fa-link"></i></span> Get Session
         </a>
-        <button id="menuBtn" class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 border border-white/8 text-gray-300" style="transition: background 0.18s ease;">
+        <button id="menuBtn" class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 border border-white/8 text-gray-500 outline-none focus:outline-none focus:ring-0" style="transition: background 0.18s ease, color 0.18s ease;">
           <i class="fas fa-bars" id="menuIcon"></i>
         </button>
       </div>
@@ -318,7 +318,7 @@
           <h2 class="text-3xl sm:text-4xl font-extrabold gradient-text mb-3" data-anim="fade-up">Key Features</h2>
           <p class="text-gray-500 text-sm max-w-lg mx-auto" data-anim="fade-up" data-delay="1">Everything you need to connect and automate your WhatsApp experience.</p>
         </div>
-        <div class="grid grid-cols-2 gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <a href="/pair" class="feature-card" data-anim="fade-up" data-delay="1">
             <div class="card-icon"><i class="fas fa-link"></i></div>
             <h3 class="text-white font-semibold mb-2">Pair Code Login</h3>
@@ -436,16 +436,19 @@
       overlay.style.opacity = '1';
       overlay.style.pointerEvents = 'auto';
       menuIcon.className = 'fas fa-times';
+      document.body.style.overflow = 'hidden';
     }
     function closeSidebar() {
       sidebar.style.transform = 'translateX(-100%)';
       overlay.style.opacity = '0';
       overlay.style.pointerEvents = 'none';
       menuIcon.className = 'fas fa-bars';
+      document.body.style.overflow = '';
     }
 
     menuBtn.addEventListener('click', () => {
       sidebar.style.transform === 'translateX(0)' ? closeSidebar() : openSidebar();
+      menuBtn.blur();
     });
     closeBtn.addEventListener('click', closeSidebar);
     overlay.addEventListener('click', closeSidebar);

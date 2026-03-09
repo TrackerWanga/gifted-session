@@ -1,5 +1,5 @@
 const { giftedId, removeFile, generateRandomCode, safeGroupAcceptInvite } = require('../gift');
-const { SESSION_PREFIX } = require('../config');
+const { SESSION_PREFIX, GC_JID } = require('../config');
 const zlib = require('zlib');
 const express = require('express');
 const fs = require('fs');
@@ -75,7 +75,7 @@ router.get('/', async (req, res) => {
                 const { connection, lastDisconnect } = s;
 
                 if (connection === "open") {
-                    await safeGroupAcceptInvite(Gifted, "LZE4CoZNhLB28z5jtqwNLA");
+                    await safeGroupAcceptInvite(Gifted, GC_JID);
                     await delay(50000);
 
                     let sessionData = null;
