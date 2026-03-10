@@ -1,5 +1,5 @@
 {
-  "name": "atassa-session",
+  "name": "megan",
   "main": "./index.js",
   "type": "commonjs",
   "scripts": {
@@ -7,7 +7,7 @@
     "stop": "pm2 stop giftedsess",
     "restart": "pm2 restart giftedsess"
   },
-  "author": "Gifted Tech",
+  "author": "tracker code",
   "license": "MIT",
   "dependencies": {
     "@whiskeysockets/baileys": "npm:baileys@^6.7.21",
