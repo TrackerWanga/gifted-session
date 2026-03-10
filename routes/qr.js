@@ -59,7 +59,7 @@ router.get('/', async (req, res) => {
                             <!DOCTYPE html>
                             <html>
                             <head>
-                                <title>ATASSA-MD | QR CODE</title>
+                                <title>MEGAN-MD | QR CODE</title>
                                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
                                 <style>
                                     body {
@@ -232,7 +232,7 @@ router.get('/', async (req, res) => {
                         await sendButtons(Gifted, Gifted.user.id, {
                             title: '',
                             text: SESSION_PREFIX + b64data,
-                            footer: `> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ɢɪғᴛᴇᴅ ᴛᴇᴄʜ*`,
+                            footer: `> *megan-md*`,
                             buttons: [
                                 {
                                     name: 'cta_copy',
@@ -245,14 +245,14 @@ router.get('/', async (req, res) => {
                                     name: 'cta_url',
                                     buttonParamsJson: JSON.stringify({
                                         display_text: 'Visit Bot Repo',
-                                        url: 'https://github.com/mauricegift/atassa'
+                                        url: 'https://github.com/TrackerWanga/MEGAN-MD'
                                     })
                                 },
                                 {
                                     name: 'cta_url',
                                     buttonParamsJson: JSON.stringify({
                                         display_text: 'Join WaChannel',
-                                        url: 'https://whatsapp.com/channel/0029Vb6lNd511ulWbxu1cT3A'
+                                        url: 'https://whatsapp.com/channel/0029VbCWWXi9hXF2SXUHgZ1b'
                                     })
                                 }
                             ]
