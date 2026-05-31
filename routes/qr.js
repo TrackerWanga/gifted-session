@@ -37,7 +37,7 @@ router.get('/session', async (req, res) => {
 
     async function GIFTED_QR_CODE() {
         const { version } = await fetchLatestBaileysVersion();
-        console.log(version);
+       // console.log(version);
         const { state, saveCreds } = await useMultiFileAuthState(path.join(sessionDir, id));
         try {
             let Gifted = giftedConnect({
